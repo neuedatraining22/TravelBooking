@@ -29,4 +29,9 @@ public class PlaneTicket extends TravelTicket {
     public void setNumberOfStopovers(int numberOfStopovers) {
         this.numberOfStopovers = numberOfStopovers;
     }
+
+    @Override
+    public void reschedule() {
+        System.out.println("I'm rescheduling the plane ticket");
+    }
 }

@@ -3,7 +3,7 @@ package com.allstate.travel.travelbooking.domain;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class TravelTicket {
+public abstract class TravelTicket {
 
     private long bookingRef;
     private String origin;
