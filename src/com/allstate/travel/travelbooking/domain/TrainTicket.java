@@ -1,5 +1,7 @@
 package com.allstate.travel.travelbooking.domain;
 
+import java.util.Objects;
+
 public class TrainTicket extends TravelTicket{
 
     private int travelClass;
@@ -28,5 +30,28 @@ public class TrainTicket extends TravelTicket{
 
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "TrainTicket{" +
+                "travelClass=" + travelClass +
+                ", carriageNumber=" + carriageNumber +
+                ", seatNumber=" + seatNumber +
+                "} " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TrainTicket that = (TrainTicket) o;
+        return travelClass == that.travelClass && carriageNumber == that.carriageNumber && seatNumber == that.seatNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), travelClass, carriageNumber, seatNumber);
     }
 }
