@@ -1,6 +1,9 @@
 package com.allstate.travel.travelbooking.domain;
 
+import com.allstate.travel.travelbooking.exceptions.InvalidTravelDurationException;
+
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,7 +19,12 @@ public abstract class TravelTicket {
     public TravelTicket() {
     }
 
-    public TravelTicket(long bookingRef, String origin, String destination, BigDecimal price, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+    public TravelTicket(long bookingRef, String origin, String destination, BigDecimal price, LocalDateTime departureTime, LocalDateTime arrivalTime) throws InvalidTravelDurationException {
+
+        if (Duration.between(departureTime, arrivalTime).toMinutes() < 0) {
+            throw new InvalidTravelDurationException();
+        }
+
         this.bookingRef = bookingRef;
         this.origin = origin;
         this.destination = destination;
