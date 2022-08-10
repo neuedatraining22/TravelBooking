@@ -2,10 +2,13 @@ package com.allstate.travel.travelbooking;
 
 import com.allstate.travel.travelbooking.domain.PlaneTicket;
 import com.allstate.travel.travelbooking.domain.TrainTicket;
+import com.allstate.travel.travelbooking.domain.TravelTicket;
 import com.allstate.travel.travelbooking.exceptions.InvalidTravelDurationException;
+import com.allstate.travel.travelbooking.utilities.BookingManager;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 
 public class Main {
@@ -54,6 +57,27 @@ public class Main {
         }
 
         System.out.println("That is the end");
+
+        ArrayList<TravelTicket> travelTickets = new ArrayList<>();
+        travelTickets.add(p);
+        travelTickets.add(p2);
+        travelTickets.add(t);
+
+        for(TravelTicket travelTicket : travelTickets) {
+            System.out.println(travelTicket);
+            if(travelTicket instanceof PlaneTicket) {
+                System.out.println("this is a plane ticket");
+                PlaneTicket pt = (PlaneTicket)travelTicket;
+
+            }
+            if(travelTicket instanceof TrainTicket) {
+                System.out.println("This is a train ticket");
+            }
+        }
+
+        BookingManager bookingManager = new BookingManager();
+        bookingManager.addTicket(p2);
+
 
     }
 }
