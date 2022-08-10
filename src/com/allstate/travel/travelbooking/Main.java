@@ -5,10 +5,14 @@ import com.allstate.travel.travelbooking.domain.TrainTicket;
 import com.allstate.travel.travelbooking.domain.TravelTicket;
 import com.allstate.travel.travelbooking.exceptions.InvalidTravelDurationException;
 import com.allstate.travel.travelbooking.utilities.BookingManager;
+import com.allstate.travel.travelbooking.utilities.CreditCardPaymentService;
+import com.allstate.travel.travelbooking.utilities.PaymentService;
+import com.allstate.travel.travelbooking.utilities.PaypalPaymentService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -58,7 +62,7 @@ public class Main {
 
         System.out.println("That is the end");
 
-        ArrayList<TravelTicket> travelTickets = new ArrayList<>();
+        List<TravelTicket> travelTickets = new ArrayList<>();
         travelTickets.add(p);
         travelTickets.add(p2);
         travelTickets.add(t);
@@ -75,7 +79,13 @@ public class Main {
             }
         }
 
-        BookingManager bookingManager = new BookingManager();
+        p2.setPrice(new BigDecimal("65.99"));
+
+        PaymentService paymentService = new PaypalPaymentService();
+        PaymentService paymentService1 = new CreditCardPaymentService();
+        PaymentService paymentService2 = PaymentService.getInstance(); //THE DEFAULT PAYMENT SERVICE
+        BookingManager bookingManager = new BookingManager(paymentService1);
+        bookingManager.start();
         bookingManager.addTicket(p2);
 
 

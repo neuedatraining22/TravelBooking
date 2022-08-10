@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class TrainTicket extends TravelTicket{
+public class TrainTicket extends TravelTicket {
 
     private int travelClass;
     private int carriageNumber;
